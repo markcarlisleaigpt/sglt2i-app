@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)file:///C:/Users/Mark/Downloads/sglt2i-decision-app-ULTRA_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGLT2-i Perioperative Decision Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./SGLT2-i Perioperative Decision Guide_files/css2" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            color-scheme: light dark;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2e4a 50%, #0f1f35 100%);
+            color: #f5f5f5;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 200, 200, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(200, 100, 200, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header-banner {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.15) 0%, rgba(100, 80, 200, 0.15) 100%);
+            border: 1px solid rgba(0, 200, 220, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 32px 28px;
+            margin-bottom: 28px;
+            color: #f5f5f5;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 200, 220, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .header-banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+            letter-spacing: -0.5px;
+        }
+        
+        .header-banner p {
+            font-size: 13px;
+            opacity: 0.8;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px;
+            flex-grow: 1;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+            position: relative;
+        }
+        
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+        
+        .question {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.3px;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+            color: #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            touch-action: manipulation;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 220, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        button:hover {
+            border-color: rgba(0, 200, 220, 0.5);
+            background: linear-gradient(135deg, rgba(0, 200, 220, 0.15) 0%, rgba(100, 80, 200, 0.1) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 200, 220, 0.2);
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(0, 200, 220, 0.15);
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, rgba(0, 200, 220, 0.08) 0%, rgba(100, 80, 200, 0.05) 100%);
+            border: 1px solid rgba(0, 200, 220, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-label:hover {
+            background: linear-gradient(135deg, rgba(0, 200, 220, 0.12) 0%, rgba(100, 80, 200, 0.08) 100%);
+            border-color: rgba(0, 200, 220, 0.4);
+        }
+        
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+            accent-color: #00c8db;
+        }
+        
+        .recommendation-box {
+            background: linear-gradient(135deg, rgba(0, 200, 220, 0.15) 0%, rgba(100, 80, 200, 0.1) 100%);
+            border: 1.5px solid rgba(0, 200, 220, 0.4);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+        
+        .rec-strength {
+            font-size: 11px;
+            font-weight: 700;
+            color: #00d4e8;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        
+        .rec-action {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f5f5f5;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #00c8db;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        
+        .section-text {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: #d4d4d4;
+            font-weight: 300;
+        }
+        
+        .evidence-box {
+            background: linear-gradient(135deg, rgba(0, 200, 220, 0.1) 0%, rgba(100, 80, 200, 0.05) 100%);
+            border-left: 3px solid #00c8db;
+            border: 1px solid rgba(0, 200, 220, 0.2);
+            border-left: 3px solid #00c8db;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .evidence-box p {
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+            color: #d4d4d4;
+            font-weight: 300;
+        }
+        
+        .evidence-box strong {
+            color: #00d4e8;
+            font-weight: 600;
+        }
+        
+        .button-primary {
+            background: linear-gradient(135deg, #00c8db 0%, #0088aa 100%);
+            border: none;
+            color: #0a1628;
+            font-weight: 600;
+            padding: 16px 18px;
+            margin-top: 4px;
+        }
+        
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(0, 200, 220, 0.3);
+            border: none;
+            background: linear-gradient(135deg, #00d4e8 0%, #0096ba 100%);
+        }
+        
+        .button-primary:active {
+            transform: translateY(0);
+        }
+        
+        .intro-text {
+            font-size: 14px;
+            color: #b0b0b0;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+        
+        .icon-wrapper {
+            display: inline-block;
+            font-size: 20px;
+            margin-right: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0, 200, 220, 0.2));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">💊</span> SGLT2-i Decision Guide</h1>
+                        <p>Evidence-based perioperative management from SPAQI consensus</p>
+                    </div>
+                    <div class="content">
+                        <p class="intro-text">An intelligent clinical tool guiding perioperative SGLT2-inhibitor management. Balances euglycemic diabetic ketoacidosis risk against critical cardiorenal protection benefits through personalized, evidence-backed recommendations.</p>
+                        <button class="button-primary" onclick="window.app.setState(&#39;surgery&#39;)">Begin Assessment</button>
+                    </div>
+                </div>
+    </div>
+
+    <script>
+        class SGLTDecisionApp {
+            constructor() {
+                this.step = 'intro';
+                this.responses = {};
+                this.totalSteps = ['surgery', 'diabetes', 'comorbidities', 'fasting', 'riskFactors', 'review'];
+                this.render();
+            }
+
+            updateResponse(key, value) {
+                this.responses[key] = value;
+            }
+
+            getRecommendation() {
+                const {
+                    surgeryType,
+                    diabetesStatus,
+                    hasHF,
+                    hasCKD,
+                    fastingDuration,
+                    dietType,
+                    hbA1c,
+                    insulinUse,
+                    priorDKA
+                } = this.responses;
+
+                let recommendation = {};
+
+                if (surgeryType === 'minor') {
+                    recommendation = {
+                        action: 'CONTINUE SGLT2-i',
+                        strength: 'Recommend',
+                        rationale: 'Minor surgery with quick return to normal diet. Risk of eDKA is low even with SGLT2i continued.',
+                        monitoring: 'No routine eDKA monitoring needed',
+                        mitigation: 'Educate patient on eDKA symptoms (abdominal pain, nausea, altered mental status) post-discharge',
+                        evidence: 'Studies show safety during Ramadan fasting (12–16 h/day) and standard preop fasting (<12 h). Low surgical stress.'
+                    };
+                } else if (surgeryType === 'colonoscopy') {
+                    recommendation = {
+                        action: 'CONTINUE SGLT2-i',
+                        strength: 'Recommend',
+                        rationale: 'Despite 24 h clear liquid diet, hyperketonemia is common in T2DM with or without SGLT2i. Actual eDKA risk remains low.',
+                        monitoring: 'None required routinely',
+                        mitigation: 'Maintain hydration. Schedule early in day. Resume oral intake early.',
+                        evidence: 'Ketosis common (13% with significant ketones >1 mM) but eDKA rare. T2DM 2.06× more likely to develop ketosis regardless of SGLT2i.'
+                    };
+                } else if (surgeryType === 'majorNoncardiac') {
+                    if (diabetesStatus === 'noDM') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2-i',
+                            strength: 'Recommend',
+                            rationale: 'eDKA risk extremely low in non-diabetic patients. Cardiorenal benefits (31% AKI reduction) outweigh negligible eDKA risk.',
+                            monitoring: 'No routine monitoring',
+                            mitigation: 'Educate on eDKA symptoms if very-low-carb diet planned postop.',
+                            evidence: 'No cases of eDKA in non-diabetic patients even with prolonged fasting in major trials.'
+                        };
+                    } else if ((hasHF || hasCKD) && diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2-i',
+                            strength: 'Recommend',
+                            rationale: 'Cardiorenal protection (31% AKI reduction, MACE reduction) outweighs eDKA risk. Close periop monitoring available.',
+                            monitoring: 'Monitor for eDKA until normal oral intake resumed. Check anion gap, serum ketones if indicated.',
+                            mitigation: 'Minimize NPO time for carbohydrates (≥50 g/day preop). Intraop dextrose if surgery >3 h. Target glucose 140–180 mg/dL.',
+                            evidence: '31% reduction in postop AKI with SGLT2i. Particular benefit in HF patients. Studies show IV insulin in first 24 h reduces eDKA (OR 0.054).'
+                        };
+                    } else if (diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'CONSIDER CONTINUING',
+                            strength: 'Consider',
+                            rationale: 'Balance eDKA risk (0.4–6.5%) against AKI protection (31% reduction). If prolonged postop fasting expected, holding safer.',
+                            monitoring: 'If continued: monitor anion gap postop. Check serum ketones if AG elevated.',
+                            mitigation: 'If continuing: ensure ≥50 g carbs preop, dextrose/insulin if surgery >3 h. If discontinuing: hold 3–4 days.',
+                            evidence: 'Major surgery carries eDKA risk in T2DM, but continuation shows AKI benefit. Risk-benefit depends on surgical stress and postop diet.'
+                        };
+                    }
+                } else if (surgeryType === 'cardiac') {
+                    if (diabetesStatus === 'noDM') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2-i',
+                            strength: 'Recommend',
+                            rationale: 'Negligible eDKA risk in non-diabetic. Cardiorenal benefits critical in cardiac surgery.',
+                            monitoring: 'Monitor for eDKA (standard postop labs)',
+                            mitigation: 'Minimize NPO time.',
+                            evidence: 'No eDKA cases in non-diabetic patients in major RCTs.'
+                        };
+                    } else if ((hasHF || hasCKD) && diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2-i',
+                            strength: 'Recommend',
+                            rationale: 'HF/CKD patients derive major benefit (reduced MI, MACE). Cardiac surgery carries highest eDKA risk (~15–70%) but patients closely monitored.',
+                            monitoring: 'Mandatory periop eDKA monitoring. Check anion gap, serum ketones, arterial pH postop.',
+                            mitigation: 'Prophylactic IV dextrose (5% at 50–100 mL/h) + insulin infusion. Target glucose 140–180 mg/dL. Twice-daily labs first 48 h postop.',
+                            evidence: 'SGLT2i users with HF show reduced postop MI (OR 0.46), lower MACE. IV insulin in first 24 h reduces eDKA (OR 0.054).'
+                        };
+                    } else if (diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'DISCONTINUE for 3 days',
+                            strength: 'Recommend',
+                            rationale: 'T2DM without HF/CKD: eDKA risk outweighs benefits in high-risk cardiac setting.',
+                            monitoring: 'Standard postop labs',
+                            mitigation: 'Resume when tolerating oral diet.',
+                            evidence: '0–15% eDKA in cardiac surgery even with hold; benefit of continuation not proven in T2DM alone.'
+                        };
+                    }
+                } else if (surgeryType === 'bariatric') {
+                    if (diabetesStatus === 'noDM') {
+                        recommendation = {
+                            action: 'DISCONTINUE for 3 days',
+                            strength: 'Recommend',
+                            rationale: 'Preop + postop very-low-carb diet creates synergistic eDKA risk even in non-DM patients.',
+                            monitoring: 'Screen for eDKA preop if SGLT2i continued.',
+                            mitigation: 'May proceed if asymptomatic with postop monitoring available. Educate on eDKA symptoms.',
+                            evidence: 'Majority of bariatric eDKA cases occur with continued SGLT2i on ketogenic diet.'
+                        };
+                    } else if (diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'DISCONTINUE at start of bariatric diet',
+                            strength: 'Recommend',
+                            rationale: 'Ketogenic diet + SGLT2i + surgical stress = very high eDKA risk. Patients continue low-carb postop.',
+                            monitoring: 'Preop eDKA screening if SGLT2i continued. Twice-daily eDKA testing if continued periop.',
+                            mitigation: 'If SGLT2i continued: preop labs; intraop dextrose/insulin; postop dextrose/insulin. Endocrine consult recommended.',
+                            evidence: 'Systematic review: 7.18-fold higher DKA risk on ketogenic diet. Most cases involve SGLT2i continuation with restricted carbs.'
+                        };
+                    }
+                }
+
+                return recommendation;
+            }
+
+            setState(newStep) {
+                this.step = newStep;
+                this.render();
+            }
+
+            renderIntro() {
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">💊</span> SGLT2-i Decision Guide</h1>
+                        <p>Evidence-based perioperative management from SPAQI consensus</p>
+                    </div>
+                    <div class="content">
+                        <p class="intro-text">An intelligent clinical tool guiding perioperative SGLT2-inhibitor management. Balances euglycemic diabetic ketoacidosis risk against critical cardiorenal protection benefits through personalized, evidence-backed recommendations.</p>
+                        <button class="button-primary" onclick="window.app.setState('surgery')">Begin Assessment</button>
+                    </div>
+                `;
+            }
+
+            renderSurgery() {
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">🏥</span> Surgery Type</h1>
+                        <p>Step 1 of 6 — Define the surgical context</p>
+                    </div>
+                    <div class="content">
+                        <div class="question">What type of surgery is planned?</div>
+                        <button onclick="window.app.updateResponse('surgeryType', 'minor'); window.app.setState('diabetes')"><span class="icon-wrapper">🩹</span> Minor surgery or procedure</button>
+                        <button onclick="window.app.updateResponse('surgeryType', 'colonoscopy'); window.app.setState('diabetes')"><span class="icon-wrapper">🔍</span> Colonoscopy</button>
+                        <button onclick="window.app.updateResponse('surgeryType', 'majorNoncardiac'); window.app.setState('diabetes')"><span class="icon-wrapper">⚕️</span> Major noncardiac surgery</button>
+                        <button onclick="window.app.updateResponse('surgeryType', 'cardiac'); window.app.setState('diabetes')"><span class="icon-wrapper">❤️</span> Cardiac surgery</button>
+                        <button onclick="window.app.updateResponse('surgeryType', 'bariatric'); window.app.setState('diabetes')"><span class="icon-wrapper">⚖️</span> Bariatric surgery</button>
+                    </div>
+                `;
+            }
+
+            renderDiabetes() {
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">🩺</span> Diabetes Status</h1>
+                        <p>Step 2 of 6 — Patient metabolic profile</p>
+                    </div>
+                    <div class="content">
+                        <div class="question">Type 2 diabetes mellitus (T2DM)?</div>
+                        <button onclick="window.app.updateResponse('diabetesStatus', 't2dm'); window.app.setState('comorbidities')"><span class="icon-wrapper">✓</span> Yes, T2DM</button>
+                        <button onclick="window.app.updateResponse('diabetesStatus', 'noDM'); window.app.setState('comorbidities')"><span class="icon-wrapper">✗</span> No diabetes or prediabetes</button>
+                    </div>
+                `;
+            }
+
+            renderComorbidities() {
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">💓</span> Comorbidities</h1>
+                        <p>Step 3 of 6 — Cardiorenal status</p>
+                    </div>
+                    <div class="content">
+                        <div class="question">Heart failure (HF) or chronic kidney disease (CKD)?</div>
+                        <button onclick="window.app.updateResponse('hasHF', true); window.app.updateResponse('hasCKD', false); window.app.setState('fasting')"><span class="icon-wrapper">❤️</span> Heart failure (±CKD)</button>
+                        <button onclick="window.app.updateResponse('hasHF', false); window.app.updateResponse('hasCKD', true); window.app.setState('fasting')"><span class="icon-wrapper">🫘</span> CKD without HF</button>
+                        <button onclick="window.app.updateResponse('hasHF', true); window.app.updateResponse('hasCKD', true); window.app.setState('fasting')"><span class="icon-wrapper">❤️🫘</span> Both HF and CKD</button>
+                        <button onclick="window.app.updateResponse('hasHF', false); window.app.updateResponse('hasCKD', false); window.app.setState('fasting')"><span class="icon-wrapper">✗</span> Neither HF nor CKD</button>
+                    </div>
+                `;
+            }
+
+            renderFasting() {
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">🍽️</span> Preoperative Diet</h1>
+                        <p>Step 4 of 6 — Fasting and nutritional status</p>
+                    </div>
+                    <div class="content">
+                        <div class="question">Preoperative fasting and diet?</div>
+                        <button onclick="window.app.updateResponse('fastingDuration', 'normal'); window.app.updateResponse('dietType', 'normal'); window.app.setState('riskFactors')"><span class="icon-wrapper">✓</span> Standard fasting (solids 8 h, liquids 2 h)</button>
+                        <button onclick="window.app.updateResponse('fastingDuration', 'prolonged'); window.app.updateResponse('dietType', 'normal'); window.app.setState('riskFactors')"><span class="icon-wrapper">⏱️</span> Prolonged fasting or NPO >12 h</button>
+                        <button onclick="window.app.updateResponse('fastingDuration', 'prolonged'); window.app.updateResponse('dietType', 'veryLowCarb'); window.app.setState('riskFactors')"><span class="icon-wrapper">⚠️</span> Very-low-carb diet (bariatric, ketogenic)</button>
+                    </div>
+                `;
+            }
+
+            renderRiskFactors() {
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">⚠️</span> Risk Assessment</h1>
+                        <p>Step 5 of 6 — eDKA risk factors</p>
+                    </div>
+                    <div class="content">
+                        <div class="question">eDKA risk factors (select all that apply)</div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hba1c" onchange="window.app.updateResponse('hbA1c', this.checked ? 'over8' : 'under8')">
+                            <span>HbA1c >8% (poorly controlled)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="insulin" onchange="window.app.updateResponse('insulinUse', this.checked ? 'yes' : 'no')">
+                            <span>Taking insulin</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="dka" onchange="window.app.updateResponse('priorDKA', this.checked ? 'yes' : 'no')">
+                            <span>Prior history of DKA</span>
+                        </label>
+                        <button class="button-primary" onclick="window.app.setState('review')" style="margin-top: 20px;">Generate Recommendation</button>
+                    </div>
+                `;
+            }
+
+            renderRecommendation() {
+                const rec = this.getRecommendation();
+                return `
+                    <div class="header-banner">
+                        <h1><span class="icon-wrapper">📋</span> Clinical Recommendation</h1>
+                        <p>Step 6 of 6 — Evidence-based decision framework</p>
+                    </div>
+                    <div class="content">
+                        <div class="recommendation-box">
+                            <div class="rec-strength">${rec.strength}</div>
+                            <p class="rec-action">${rec.action}</p>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-label">📌 Clinical Rationale</div>
+                            <div class="section-text">${rec.rationale}</div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-label">🔬 Perioperative Monitoring</div>
+                            <div class="section-text">${rec.monitoring}</div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-label">🛡️ Mitigation Strategies</div>
+                            <div class="section-text">${rec.mitigation}</div>
+                        </div>
+                        
+                        <div class="evidence-box">
+                            <p><strong>📚 Evidence Base:</strong> ${rec.evidence}</p>
+                        </div>
+                        
+                        <button class="button-primary" onclick="window.app.responses = {}; window.app.setState('surgery')">Start New Assessment</button>
+                    </div>
+                `;
+            }
+
+            render() {
+                let html = '';
+                
+                if (this.step === 'intro') {
+                    html = this.renderIntro();
+                } else if (this.step === 'surgery') {
+                    html = this.renderSurgery();
+                } else if (this.step === 'diabetes') {
+                    html = this.renderDiabetes();
+                } else if (this.step === 'comorbidities') {
+                    html = this.renderComorbidities();
+                } else if (this.step === 'fasting') {
+                    html = this.renderFasting();
+                } else if (this.step === 'riskFactors') {
+                    html = this.renderRiskFactors();
+                } else if (this.step === 'review') {
+                    html = this.renderRecommendation();
+                }
+                
+                document.getElementById('app').innerHTML = html;
+            }
+        }
+
+        window.app = new SGLTDecisionApp();
+    </script>
+
+
+</body></html>
