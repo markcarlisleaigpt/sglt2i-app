@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)file:///C:/Users/Mark/Downloads/sglt2i-decision-app-ULTRA_1.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGLT2-i Perioperative Decision Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="./SGLT2-i Perioperative Decision Guide_files/css2" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -333,20 +333,51 @@
             margin-right: 8px;
             filter: drop-shadow(0 2px 4px rgba(0, 200, 220, 0.2));
         }
+        
+        .disclaimer-box {
+            background: linear-gradient(135deg, rgba(220, 100, 100, 0.1) 0%, rgba(200, 80, 80, 0.05) 100%);
+            border: 1px solid rgba(220, 100, 100, 0.25);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #d4d4d4;
+        }
+        
+        .disclaimer-box strong {
+            color: #ff9999;
+            font-weight: 700;
+        }
+        
+        .footer {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: #888;
+            line-height: 1.6;
+        }
+        
+        .footer a {
+            color: #00c8db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #00d4e8;
+            text-decoration: underline;
+        }
+        
+        .attribution {
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="app">
-                    <div class="header-banner">
-                        <h1><span class="icon-wrapper">💊</span> SGLT2-i Decision Guide</h1>
-                        <p>Evidence-based perioperative management from SPAQI consensus</p>
-                    </div>
-                    <div class="content">
-                        <p class="intro-text">An intelligent clinical tool guiding perioperative SGLT2-inhibitor management. Balances euglycemic diabetic ketoacidosis risk against critical cardiorenal protection benefits through personalized, evidence-backed recommendations.</p>
-                        <button class="button-primary" onclick="window.app.setState(&#39;surgery&#39;)">Begin Assessment</button>
-                    </div>
-                </div>
+        <div id="app"></div>
     </div>
 
     <script>
@@ -486,11 +517,16 @@
             renderIntro() {
                 return `
                     <div class="header-banner">
-                        <h1><span class="icon-wrapper">💊</span> SGLT2-i Decision Guide</h1>
+                        <h1><span class="icon-wrapper">💊</span> ABSMC Pre-op SGLT2-i Tool</h1>
                         <p>Evidence-based perioperative management from SPAQI consensus</p>
                     </div>
                     <div class="content">
-                        <p class="intro-text">An intelligent clinical tool guiding perioperative SGLT2-inhibitor management. Balances euglycemic diabetic ketoacidosis risk against critical cardiorenal protection benefits through personalized, evidence-backed recommendations.</p>
+                        <p class="intro-text">An intelligent clinical tool guiding perioperative SGLT2-inhibitor management for the Alta Bates Summit Medical Center Preoperative Clinic. Balances euglycemic diabetic ketoacidosis risk against critical cardiorenal protection benefits through personalized, evidence-backed recommendations.</p>
+                        
+                        <div class="disclaimer-box">
+                            <strong>⚠️ Clinical Disclaimer:</strong> This tool is a decision-support aid only and does not replace clinical judgment. All recommendations should be verified against current clinical guidelines, patient-specific factors, and institutional protocols. Consult with your clinical team and prescribing physicians before making any medication management decisions. Users assume full responsibility for clinical decisions made.
+                        </div>
+                        
                         <button class="button-primary" onclick="window.app.setState('surgery')">Begin Assessment</button>
                     </div>
                 `;
@@ -616,6 +652,18 @@
                         </div>
                         
                         <button class="button-primary" onclick="window.app.responses = {}; window.app.setState('surgery')">Start New Assessment</button>
+                        
+                        <div class="footer">
+                            <div class="attribution">
+                                <strong>Developed by:</strong> Mark Carlisle, MD, Co-Medical Director, ABSMC Preoperative Clinic
+                            </div>
+                            <div class="attribution">
+                                <strong>Evidence base:</strong> SPAQI multidisciplinary consensus statement on perioperative SGLT2-inhibitor management. Oprea et al. <em>British Journal of Anaesthesia</em>. 2026. doi: 10.1016/j.bja.2026.02.031
+                            </div>
+                            <div>
+                                <strong>Disclaimer:</strong> This is a decision-support tool only. All recommendations must be verified against current clinical guidelines, institutional protocols, and patient-specific factors. Consult your clinical team before making medication management decisions.
+                            </div>
+                        </div>
                     </div>
                 `;
             }
@@ -645,6 +693,5 @@
 
         window.app = new SGLTDecisionApp();
     </script>
-
-
-</body></html>
+</body>
+</html>
