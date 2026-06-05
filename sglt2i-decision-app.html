@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGLT2-i Perioperative Decision Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            color-scheme: light dark;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: #f5f5f5;
+            }
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            margin-bottom: 24px;
+            padding-top: 8px;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .header p {
+                color: #aaa;
+            }
+        }
+        
+        .content {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .content {
+                background: #2a2a2a;
+                border-color: #444;
+            }
+        }
+        
+        .question {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            border: 1px solid #d0d0d0;
+            background: white;
+            color: #1a1a1a;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s;
+            touch-action: manipulation;
+        }
+        
+        button:active {
+            background: #f0f0f0;
+            border-color: #999;
+            transform: scale(0.98);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            button {
+                background: #333;
+                color: #f5f5f5;
+                border-color: #555;
+            }
+            button:active {
+                background: #444;
+                border-color: #777;
+            }
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #fafafa;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .checkbox-label {
+                background: #333;
+            }
+        }
+        
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .recommendation-box {
+            background: #f0f7ff;
+            border: 1px solid #b3d9f2;
+            border-radius: 6px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .recommendation-box {
+                background: #1a3a4a;
+                border-color: #2a5a7a;
+            }
+        }
+        
+        .rec-strength {
+            font-size: 11px;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .rec-strength {
+                color: #66b3ff;
+            }
+        }
+        
+        .rec-action {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .rec-action {
+                color: #f5f5f5;
+            }
+        }
+        
+        .section {
+            margin-bottom: 16px;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .section-label {
+                color: #66b3ff;
+            }
+        }
+        
+        .section-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .section-text {
+                color: #ccc;
+            }
+        }
+        
+        .evidence-box {
+            background: #f5f5f5;
+            border-left: 3px solid #0066cc;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .evidence-box {
+                background: #333;
+                border-left-color: #66b3ff;
+            }
+        }
+        
+        .evidence-box p {
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+            color: #555;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .evidence-box p {
+                color: #aaa;
+            }
+        }
+        
+        .evidence-box strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .evidence-box strong {
+                color: #f5f5f5;
+            }
+        }
+        
+        .button-primary {
+            background: white;
+            border: 1px solid #d0d0d0;
+            color: #1a1a1a;
+            font-weight: 500;
+            padding: 14px 16px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .button-primary {
+                background: #333;
+                border-color: #555;
+                color: #f5f5f5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+
+    <script>
+        class SGLTDecisionApp {
+            constructor() {
+                this.step = 'intro';
+                this.responses = {};
+                this.render();
+            }
+
+            updateResponse(key, value) {
+                this.responses[key] = value;
+            }
+
+            getRecommendation() {
+                const {
+                    surgeryType,
+                    diabetesStatus,
+                    hasHF,
+                    hasCKD,
+                    fastingDuration,
+                    dietType,
+                    hbA1c,
+                    insulinUse,
+                    priorDKA
+                } = this.responses;
+
+                let recommendation = {};
+
+                if (surgeryType === 'minor') {
+                    recommendation = {
+                        action: 'CONTINUE SGLT2i',
+                        strength: 'Recommend',
+                        rationale: 'Minor surgery with quick return to normal diet. Risk of eDKA is low even with SGLT2i continued.',
+                        monitoring: 'No routine eDKA monitoring needed',
+                        mitigation: 'Educate patient on eDKA symptoms (abdominal pain, nausea, altered mental status) post-discharge',
+                        evidence: 'Studies show safety during Ramadan fasting (12–16 h/day) and standard preop fasting (<12 h). Low surgical stress.'
+                    };
+                } else if (surgeryType === 'colonoscopy') {
+                    recommendation = {
+                        action: 'CONTINUE SGLT2i',
+                        strength: 'Recommend',
+                        rationale: 'Despite 24 h clear liquid diet, hyperketonemia is common in T2DM with or without SGLT2i. Actual eDKA risk remains low.',
+                        monitoring: 'None required routinely',
+                        mitigation: 'Maintain hydration. Schedule early in day. Resume oral intake early.',
+                        evidence: 'Ketosis common (13% with significant ketones >1 mM) but eDKA rare. T2DM 2.06× more likely to develop ketosis regardless of SGLT2i.'
+                    };
+                } else if (surgeryType === 'majorNoncardiac') {
+                    if (diabetesStatus === 'noDM') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2i',
+                            strength: 'Recommend',
+                            rationale: 'eDKA risk extremely low in non-diabetic patients. Cardiorenal benefits (31% AKI reduction) outweigh negligible eDKA risk.',
+                            monitoring: 'No routine monitoring',
+                            mitigation: 'Educate on eDKA symptoms if very-low-carb diet planned postop.',
+                            evidence: 'No cases of eDKA in non-diabetic patients even with prolonged fasting in major trials.'
+                        };
+                    } else if ((hasHF || hasCKD) && diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2i',
+                            strength: 'Recommend',
+                            rationale: 'Cardiorenal protection (31% AKI reduction, MACE reduction) outweighs eDKA risk. Close periop monitoring available.',
+                            monitoring: 'Monitor for eDKA until normal oral intake resumed. Check anion gap, serum ketones if indicated.',
+                            mitigation: 'Minimize NPO time for carbohydrates (≥50 g/day preop). Intraop dextrose if surgery >3 h. Target glucose 140–180 mg/dL.',
+                            evidence: '31% reduction in postop AKI with SGLT2i. Particular benefit in HF patients. Studies show IV insulin in first 24 h reduces eDKA (OR 0.054).'
+                        };
+                    } else if (diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'CONSIDER CONTINUING',
+                            strength: 'Consider',
+                            rationale: 'Balance eDKA risk (0.4–6.5%) against AKI protection (31% reduction). If prolonged postop fasting expected, holding safer.',
+                            monitoring: 'If continued: monitor anion gap postop. Check serum ketones if AG elevated.',
+                            mitigation: 'If continuing: ensure ≥50 g carbs preop, dextrose/insulin if surgery >3 h. If discontinuing: hold 3–4 days.',
+                            evidence: 'Major surgery carries eDKA risk in T2DM, but continuation shows AKI benefit. Risk-benefit depends on surgical stress and postop diet.'
+                        };
+                    }
+                } else if (surgeryType === 'cardiac') {
+                    if (diabetesStatus === 'noDM') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2i',
+                            strength: 'Recommend',
+                            rationale: 'Negligible eDKA risk in non-diabetic. Cardiorenal benefits critical in cardiac surgery.',
+                            monitoring: 'Monitor for eDKA (standard postop labs)',
+                            mitigation: 'Minimize NPO time.',
+                            evidence: 'No eDKA cases in non-diabetic patients in major RCTs.'
+                        };
+                    } else if ((hasHF || hasCKD) && diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'CONTINUE SGLT2i',
+                            strength: 'Recommend',
+                            rationale: 'HF/CKD patients derive major benefit (reduced MI, MACE). Cardiac surgery carries highest eDKA risk (~15–70%) but patients closely monitored.',
+                            monitoring: 'Mandatory periop eDKA monitoring. Check anion gap, serum ketones, arterial pH postop.',
+                            mitigation: 'Prophylactic IV dextrose (5% at 50–100 mL/h) + insulin infusion. Target glucose 140–180 mg/dL. Twice-daily labs first 48 h postop.',
+                            evidence: 'SGLT2i users with HF show reduced postop MI (OR 0.46), lower MACE. IV insulin in first 24 h reduces eDKA (OR 0.054).'
+                        };
+                    } else if (diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'DISCONTINUE for 3 days',
+                            strength: 'Recommend',
+                            rationale: 'T2DM without HF/CKD: eDKA risk outweighs benefits in high-risk cardiac setting.',
+                            monitoring: 'Standard postop labs',
+                            mitigation: 'Resume when tolerating oral diet.',
+                            evidence: '0–15% eDKA in cardiac surgery even with hold; benefit of continuation not proven in T2DM alone.'
+                        };
+                    }
+                } else if (surgeryType === 'bariatric') {
+                    if (diabetesStatus === 'noDM') {
+                        recommendation = {
+                            action: 'DISCONTINUE for 3 days',
+                            strength: 'Recommend',
+                            rationale: 'Preop + postop very-low-carb diet creates synergistic eDKA risk even in non-DM patients.',
+                            monitoring: 'Screen for eDKA preop if SGLT2i continued.',
+                            mitigation: 'May proceed if asymptomatic with postop monitoring available. Educate on eDKA symptoms.',
+                            evidence: 'Majority of bariatric eDKA cases occur with continued SGLT2i on ketogenic diet.'
+                        };
+                    } else if (diabetesStatus === 't2dm') {
+                        recommendation = {
+                            action: 'DISCONTINUE at start of bariatric diet',
+                            strength: 'Recommend',
+                            rationale: 'Ketogenic diet + SGLT2i + surgical stress = very high eDKA risk. Patients continue low-carb postop.',
+                            monitoring: 'Preop eDKA screening if SGLT2i continued. Twice-daily eDKA testing if continued periop.',
+                            mitigation: 'If SGLT2i continued: preop labs; intraop dextrose/insulin; postop dextrose/insulin. Endocrine consult recommended.',
+                            evidence: 'Systematic review: 7.18-fold higher DKA risk on ketogenic diet. Most cases involve SGLT2i continuation with restricted carbs.'
+                        };
+                    }
+                }
+
+                return recommendation;
+            }
+
+            setState(newStep) {
+                this.step = newStep;
+                this.render();
+            }
+
+            renderIntro() {
+                return `
+                    <div class="header">
+                        <h1>SGLT2-i Perioperative Decision Guide</h1>
+                        <p>Evidence-based algorithm for perioperative SGLT2-inhibitor management based on SPAQI consensus.</p>
+                    </div>
+                    <div class="content">
+                        <p style="font-size: 14px; margin-bottom: 14px;">This tool guides you through the decision to continue or discontinue SGLT2-i perioperatively, balancing euglycemic diabetic ketoacidosis (eDKA) risk against cardiorenal benefits.</p>
+                        <button class="button-primary" onclick="app.setState('surgery)" style="font-weight: 500;">Start assessment →</button>
+                    </div>
+                `;
+            }
+
+            renderSurgery() {
+                return `
+                    <div class="content">
+                        <div class="question">Type of surgery?</div>
+                        <button onclick="app.updateResponse('surgeryType', 'minor'); app.setState('diabetes')">Minor surgery or procedure</button>
+                        <button onclick="app.updateResponse('surgeryType', 'colonoscopy'); app.setState('diabetes')">Colonoscopy</button>
+                        <button onclick="app.updateResponse('surgeryType', 'majorNoncardiac'); app.setState('diabetes')">Major noncardiac surgery</button>
+                        <button onclick="app.updateResponse('surgeryType', 'cardiac'); app.setState('diabetes')">Cardiac surgery</button>
+                        <button onclick="app.updateResponse('surgeryType', 'bariatric'); app.setState('diabetes')">Bariatric surgery</button>
+                    </div>
+                `;
+            }
+
+            renderDiabetes() {
+                return `
+                    <div class="content">
+                        <div class="question">Type 2 diabetes mellitus?</div>
+                        <button onclick="app.updateResponse('diabetesStatus', 't2dm'); app.setState('comorbidities')">Yes, T2DM</button>
+                        <button onclick="app.updateResponse('diabetesStatus', 'noDM'); app.setState('comorbidities')">No diabetes or prediabetes</button>
+                    </div>
+                `;
+            }
+
+            renderComorbidities() {
+                return `
+                    <div class="content">
+                        <div class="question">Heart failure (HF) or chronic kidney disease (CKD)?</div>
+                        <button onclick="app.updateResponse('hasHF', true); app.updateResponse('hasCKD', false); app.setState('fasting')">Heart failure (±CKD)</button>
+                        <button onclick="app.updateResponse('hasHF', false); app.updateResponse('hasCKD', true); app.setState('fasting')">CKD without HF</button>
+                        <button onclick="app.updateResponse('hasHF', true); app.updateResponse('hasCKD', true); app.setState('fasting')">Both HF and CKD</button>
+                        <button onclick="app.updateResponse('hasHF', false); app.updateResponse('hasCKD', false); app.setState('fasting')">Neither HF nor CKD</button>
+                    </div>
+                `;
+            }
+
+            renderFasting() {
+                return `
+                    <div class="content">
+                        <div class="question">Preoperative fasting and diet?</div>
+                        <button onclick="app.updateResponse('fastingDuration', 'normal'); app.updateResponse('dietType', 'normal'); app.setState('riskFactors')">Normal fasting (solids 8 h, liquids 2 h)</button>
+                        <button onclick="app.updateResponse('fastingDuration', 'prolonged'); app.updateResponse('dietType', 'normal'); app.setState('riskFactors')">Prolonged fasting or NPO >12 h</button>
+                        <button onclick="app.updateResponse('fastingDuration', 'prolonged'); app.updateResponse('dietType', 'veryLowCarb'); app.setState('riskFactors')">Very-low-carb diet (bariatric, ketogenic)</button>
+                    </div>
+                `;
+            }
+
+            renderRiskFactors() {
+                return `
+                    <div class="content">
+                        <div class="question">eDKA risk factors (select all that apply)</div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hba1c" onchange="app.updateResponse('hbA1c', this.checked ? 'over8' : 'under8')">
+                            <span>HbA1c >8% (poorly controlled)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="insulin" onchange="app.updateResponse('insulinUse', this.checked ? 'yes' : 'no')">
+                            <span>Taking insulin</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="dka" onchange="app.updateResponse('priorDKA', this.checked ? 'yes' : 'no')">
+                            <span>Prior history of DKA</span>
+                        </label>
+                        <button class="button-primary" onclick="app.setState('review')" style="margin-top: 14px; font-weight: 500;">Get recommendation →</button>
+                    </div>
+                `;
+            }
+
+            renderRecommendation() {
+                const rec = this.getRecommendation();
+                return `
+                    <div class="content">
+                        <div class="recommendation-box">
+                            <div class="rec-strength">${rec.strength}</div>
+                            <p class="rec-action">${rec.action}</p>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-label">Rationale</div>
+                            <div class="section-text">${rec.rationale}</div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-label">Perioperative monitoring</div>
+                            <div class="section-text">${rec.monitoring}</div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-label">Mitigation strategies</div>
+                            <div class="section-text">${rec.mitigation}</div>
+                        </div>
+                        
+                        <div class="evidence-box">
+                            <p><strong>Evidence:</strong> ${rec.evidence}</p>
+                        </div>
+                        
+                        <button class="button-primary" onclick="app.responses = {}; app.setState('surgery')" style="font-weight: 500;">New assessment</button>
+                    </div>
+                `;
+            }
+
+            render() {
+                let html = '';
+                
+                if (this.step === 'intro') {
+                    html = this.renderIntro();
+                } else if (this.step === 'surgery') {
+                    html = this.renderSurgery();
+                } else if (this.step === 'diabetes') {
+                    html = this.renderDiabetes();
+                } else if (this.step === 'comorbidities') {
+                    html = this.renderComorbidities();
+                } else if (this.step === 'fasting') {
+                    html = this.renderFasting();
+                } else if (this.step === 'riskFactors') {
+                    html = this.renderRiskFactors();
+                } else if (this.step === 'review') {
+                    html = this.renderRecommendation();
+                }
+                
+                document.getElementById('app').innerHTML = html;
+            }
+        }
+
+        const app = new SGLTDecisionApp();
+    </script>
+</body>
+</html>
